@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: whoami
+  namespace: thundercats
+  labels:
+    app: whoami
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: whoami2.thundercats.k8ns.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: whoami
+          servicePort: http
